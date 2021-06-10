@@ -1,0 +1,10 @@
+sitemap home label="Smart Home"
+{
+       Frame label="My Room"
+       {
+               Switch item=fan
+               Switch item=light
+               Switch item=exhaust
+               Switch item=night_light
+       }
+}
