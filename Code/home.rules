@@ -1,0 +1,37 @@
+import org.openhab.model.script.actions.*
+import org.openhab.core.library.types.*
+import java.util.*
+
+rule "voice"
+
+when
+Item VoiceCommand received command
+then
+var String command = VoiceCommand.state.toString.toLowerCase
+logInfo("Voice.Rec","VoiceCommand received "+command)
+
+if (command.contains("turn on fan") || (command.contains("turn on the fan"))) {
+fan.sendCommand(ON)
+}
+else if (command.contains("turn off fan") || (command.contains("turn off the fan"))) {
+fan.sendCommand(OFF)
+}
+else if (command.contains("turn off light") || (command.contains("turn off the light"))) {
+light.sendCommand(OFF)
+}
+else if (command.contains("turn on light") || (command.contains("turn on the light"))) {
+light.sendCommand(ON)
+}
+else if (command.contains("turn on night lamp") || (command.contains("turn on the night lamp"))) {
+night_light.sendCommand(ON)
+}
+else if (command.contains("turn off night lamp") || (command.contains("turn off the light lamp"))) {
+night_light.sendCommand(OFF)
+}
+else if (command.contains("turn on exhaust fan") || (command.contains("turn on the exhaust fan"))) {
+exhaust.sendCommand(ON)
+}
+else if (command.contains("turn off exhaust fan") || (command.contains("turn off the exhaust fan"))) {
+exhaust.sendCommand(OFF)
+}
+end
